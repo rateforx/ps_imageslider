@@ -25,23 +25,19 @@
 *}
 
 {if $homeslider.slides}
-  <div class="homeslider" data-transition-speed="{$homeslider.speed}" data-pause-duration="{$homeslider.pause}" data-autoplay="{$homeslider.autoplay}">
-    <ul>
+  <div class="homeslider-container" data-interval="{$homeslider.speed}" data-wrap="{$homeslider.wrap}" data-pause="{$homeslider.pause}">
+    <ul class="rslides">
       {foreach from=$homeslider.slides item=slide}
         <li class="slide">
-          <img src="{$link->getMediaLink("`$smarty.const._MODULE_DIR_`homeslider/images/`$slide.image`")}" alt="{$slide.legend|escape}" />
+          <img src="{$slide.image_url}" alt="{$slide.legend|escape}" />
           {if $slide.title || $slide.description }
-          <span class="caption">
-            <h2>{$slide.title}</h2>
-            <div>{$slide.description nofilter}</div>
-          </span>
+            <span class="caption">
+              <h2>{$slide.title}</h2>
+              <div>{$slide.description nofilter}</div>
+            </span>
           {/if}
         </li>
       {/foreach}
     </ul>
-    <div class="direction">
-      <span class="prev">&lt;</span>
-      <span class="next">&gt;</span>
-    </div>
   </div>
 {/if}
