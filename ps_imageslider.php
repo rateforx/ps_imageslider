@@ -36,7 +36,7 @@ use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 include_once(_PS_MODULE_DIR_.'homeslider/HomeSlide.php');
 
-class HomeSlider extends Module implements WidgetInterface
+class Ps_ImageSlider extends Module implements WidgetInterface
 {
     protected $_html = '';
     protected $default_width = 779;
@@ -46,9 +46,9 @@ class HomeSlider extends Module implements WidgetInterface
 
     public function __construct()
     {
-        $this->name = 'homeslider';
+        $this->name = 'ps_imageslider';
         $this->tab = 'front_office_features';
-        $this->version = '2.0.0';
+        $this->version = '1.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
         $this->secure_key = Tools::encrypt($this->name);
@@ -56,8 +56,8 @@ class HomeSlider extends Module implements WidgetInterface
 
         parent::__construct();
 
-        $this->displayName = $this->l('Image slider for your homepage');
-        $this->description = $this->l('Adds an image slider to your homepage.');
+        $this->displayName = $this->l('Image slider');
+        $this->description = $this->l('Adds an image slider to your site.');
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
     }
 
@@ -531,11 +531,11 @@ class HomeSlider extends Module implements WidgetInterface
 
     public function renderWidget($hookName = null, array $configuration = [])
     {
-        if (!$this->isCached('homeslider.tpl', $this->getCacheId())) {
+        if (!$this->isCached('slider.tpl', $this->getCacheId())) {
             $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
         }
 
-        return $this->display(__FILE__, 'homeslider.tpl', $this->getCacheId());
+        return $this->display(__FILE__, 'slider.tpl', $this->getCacheId());
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
@@ -564,7 +564,7 @@ class HomeSlider extends Module implements WidgetInterface
 
     public function clearCache()
     {
-        $this->_clearCache('homeslider.tpl');
+        $this->_clearCache('slider.tpl');
     }
 
     public function hookActionShopDataDuplication($params)
