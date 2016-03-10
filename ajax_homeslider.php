@@ -25,9 +25,9 @@
 */
 include_once('../../config/config.inc.php');
 include_once('../../init.php');
-include_once('homeslider.php');
+include_once('ps_imageslider.php');
 
-$home_slider = new HomeSlider();
+$home_slider = new Ps_ImageSlider();
 $slides = array();
 
 if (!Tools::isSubmit('secure_key') || Tools::getValue('secure_key') != $home_slider->secure_key || !Tools::getValue('action'))

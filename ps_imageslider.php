@@ -34,7 +34,7 @@ if (!defined('_PS_VERSION_')) {
 
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
-include_once(_PS_MODULE_DIR_.'homeslider/HomeSlide.php');
+include_once(_PS_MODULE_DIR_.'ps_imageslider/HomeSlide.php');
 
 class Ps_ImageSlider extends Module implements WidgetInterface
 {
@@ -639,7 +639,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         );
 
         foreach ($slides as &$slide) {
-            $slide['image_url'] = $this->context->link->getMediaLink(_MODULE_DIR_.'homeslider/images/'.$slide['image']);
+            $slide['image_url'] = $this->context->link->getMediaLink(_MODULE_DIR_.'ps_imageslider/images/'.$slide['image']);
         }
 
         return $slides;
