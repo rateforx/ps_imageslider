@@ -40,7 +40,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 {
     protected $_html = '';
     protected $default_width = 779;
-    protected $default_speed = 2000;
+    protected $default_speed = 5000;
     protected $default_pause_on_hover = 1;
     protected $default_wrap = 1;
 
