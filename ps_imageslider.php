@@ -132,7 +132,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
             $slide->active = 1;
             foreach ($languages as $language) {
                 $slide->title[$language['id_lang']] = 'Sample '.$i;
-                $slide->description[$language['id_lang']] = '<h2>EXCEPTEUR<br />OCCAECAT</h2>
+                $slide->description[$language['id_lang']] = '<h2>EXCEPTEUR OCCAECAT</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique in tortor et dignissim. Quisque non tempor leo. Maecenas egestas sem elit</p>';
                 $slide->legend[$language['id_lang']] = 'sample-'.$i;
                 $slide->url[$language['id_lang']] = 'http://www.prestashop.com/?utm_source=back-office&utm_medium=v17_homeslider'
