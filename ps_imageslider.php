@@ -858,7 +858,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                         'type' => 'switch',
                         'label' => $this->getTranslator()->trans('Pause on hover', array(), 'Modules.ImageSlider'),
                         'name' => 'HOMESLIDER_PAUSE_ON_HOVER',
-                        'desc' => $this->getTranslator()->trans('Stop sliding when .', array(), 'Modules.ImageSlider'),
+                        'desc' => $this->getTranslator()->trans('Stop sliding when  when the mouse cursor is over the slideshow.', array(), 'Modules.ImageSlider'),
                         'values' => array(
                             array(
                                 'id' => 'active_on',
