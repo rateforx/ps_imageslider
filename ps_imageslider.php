@@ -58,7 +58,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
         $this->displayName = $this->getTranslator()->trans('Image slider', array(), 'Modules.ImageSlider');
         $this->description = $this->getTranslator()->trans('Adds an image slider to your site.', array(), 'Modules.ImageSlider');
-        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
+        $this->ps_versions_compliancy = array('min' => '1.7.0.0', 'max' => _PS_VERSION_);
     }
 
     /**
