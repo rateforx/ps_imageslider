@@ -531,11 +531,9 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
     public function renderWidget($hookName = null, array $configuration = [])
     {
-        if (!$this->isCached('slider.tpl', $this->getCacheId())) {
-            $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
-        }
+        $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
 
-        return $this->display(__FILE__, 'slider.tpl', $this->getCacheId());
+        return $this->fetch('module:ps_imageslider/views/templates/hook/slider.tpl', $this->getCacheId());
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
@@ -564,7 +562,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
     public function clearCache()
     {
-        $this->_clearCache('slider.tpl');
+        $this->_clearCache('module:ps_imageslider/views/templates/hook/slider.tpl');
     }
 
     public function hookActionShopDataDuplication($params)
@@ -712,7 +710,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
             )
         );
 
-        return $this->display(__FILE__, 'list.tpl');
+        return $this->fetch('module:ps_imageslider/views/templates/hook/list.tpl');
     }
 
     public function renderAddForm()
