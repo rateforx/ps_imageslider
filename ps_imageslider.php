@@ -34,7 +34,7 @@ if (!defined('_PS_VERSION_')) {
 
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
-include_once(_PS_MODULE_DIR_.'ps_imageslider/HomeSlide.php');
+include_once(_PS_MODULE_DIR_.'ps_imageslider/Ps_HomeSlide.php');
 
 class Ps_ImageSlider extends Module implements WidgetInterface
 {
@@ -127,7 +127,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
     {
         $languages = Language::getLanguages(false);
         for ($i = 1; $i <= 3; ++$i) {
-            $slide = new HomeSlide();
+            $slide = new Ps_HomeSlide();
             $slide->position = $i;
             $slide->active = 1;
             foreach ($languages as $language) {
@@ -213,7 +213,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
     {
         $slides = $this->getSlides();
         foreach ($slides as $slide) {
-            $to_del = new HomeSlide($slide['id_slide']);
+            $to_del = new Ps_HomeSlide($slide['id_slide']);
             $to_del->delete();
         }
 
@@ -254,7 +254,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                     $this->_html .= $this->getShopContextError(null, $mode);
                 }
             } else {
-                $associated_shop_ids = HomeSlide::getAssociatedIdsShop((int)Tools::getValue('id_slide'));
+                $associated_shop_ids = Ps_HomeSlide::getAssociatedIdsShop((int)Tools::getValue('id_slide'));
                 $context_shop_id = (int)Shop::getContextShopID();
 
                 if ($associated_shop_ids === false) {
@@ -420,7 +420,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                 Tools::redirectAdmin($this->context->link->getAdminLink('AdminModules', true) . '&conf=6&configure=' . $this->name . '&tab_module=' . $this->tab . '&module_name=' . $this->name);
             }
         } elseif (Tools::isSubmit('changeStatus') && Tools::isSubmit('id_slide')) {
-            $slide = new HomeSlide((int)Tools::getValue('id_slide'));
+            $slide = new Ps_HomeSlide((int)Tools::getValue('id_slide'));
             if ($slide->active == 0) {
                 $slide->active = 1;
             } else {
@@ -432,13 +432,13 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         } elseif (Tools::isSubmit('submitSlide')) {
             /* Sets ID if needed */
             if (Tools::getValue('id_slide')) {
-                $slide = new HomeSlide((int)Tools::getValue('id_slide'));
+                $slide = new Ps_HomeSlide((int)Tools::getValue('id_slide'));
                 if (!Validate::isLoadedObject($slide)) {
                     $this->_html .= $this->displayError($this->getTranslator()->trans('Invalid slide ID', array(), 'Modules.ImageSlider'));
                     return false;
                 }
             } else {
-                $slide = new HomeSlide();
+                $slide = new Ps_HomeSlide();
             }
             /* Sets position */
             $slide->position = (int)Tools::getValue('position');
@@ -502,7 +502,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                 $this->clearCache();
             }
         } elseif (Tools::isSubmit('delete_id_slide')) {
-            $slide = new HomeSlide((int)Tools::getValue('delete_id_slide'));
+            $slide = new Ps_HomeSlide((int)Tools::getValue('delete_id_slide'));
             $res = $slide->delete();
             $this->clearCache();
             if (!$res) {
@@ -694,7 +694,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         $slides = $this->getSlides();
         foreach ($slides as $key => $slide) {
             $slides[$key]['status'] = $this->displayStatus($slide['id_slide'], $slide['active']);
-            $associated_shop_ids = HomeSlide::getAssociatedIdsShop((int)$slide['id_slide']);
+            $associated_shop_ids = Ps_HomeSlide::getAssociatedIdsShop((int)$slide['id_slide']);
             if ($associated_shop_ids && count($associated_shop_ids) > 1) {
                 $slides[$key]['is_shared'] = true;
             } else {
@@ -782,7 +782,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         );
 
         if (Tools::isSubmit('id_slide') && $this->slideExists((int)Tools::getValue('id_slide'))) {
-            $slide = new HomeSlide((int)Tools::getValue('id_slide'));
+            $slide = new Ps_HomeSlide((int)Tools::getValue('id_slide'));
             $fields_form['form']['input'][] = array('type' => 'hidden', 'name' => 'id_slide');
             $fields_form['form']['images'] = $slide->image;
 
@@ -933,10 +933,10 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         $fields = array();
 
         if (Tools::isSubmit('id_slide') && $this->slideExists((int)Tools::getValue('id_slide'))) {
-            $slide = new HomeSlide((int)Tools::getValue('id_slide'));
+            $slide = new Ps_HomeSlide((int)Tools::getValue('id_slide'));
             $fields['id_slide'] = (int)Tools::getValue('id_slide', $slide->id);
         } else {
-            $slide = new HomeSlide();
+            $slide = new Ps_HomeSlide();
         }
 
         $fields['active_slide'] = Tools::getValue('active_slide', $slide->active);
