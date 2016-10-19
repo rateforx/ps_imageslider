@@ -24,7 +24,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-class HomeSlide extends ObjectModel
+class Ps_HomeSlide extends ObjectModel
 {
 	public $title;
 	public $description;
@@ -120,7 +120,7 @@ class HomeSlide extends ObjectModel
 
 		foreach ($rows as $row)
 		{
-			$current_slide = new HomeSlide($row['id_slide']);
+			$current_slide = new Ps_HomeSlide($row['id_slide']);
 			--$current_slide->position;
 			$current_slide->update();
 			unset($current_slide);
