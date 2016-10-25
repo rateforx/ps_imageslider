@@ -524,9 +524,9 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
     public function hookdisplayHeader($params)
     {
-        $this->context->controller->addCSS($this->_path.'css/homeslider.css');
-        $this->context->controller->addJS($this->_path.'js/responsiveslides.min.js');
-        $this->context->controller->addJS($this->_path.'js/homeslider.js');
+        $this->context->controller->registerStylesheet('modules-homeslider', 'modules/'.$this->name.'/css/homeslider.css', ['media' => 'all', 'priority' => 150]);
+        $this->context->controller->registerJavascript('modules-responsiveslides', 'modules/'.$this->name.'/js/responsiveslides.min.js', ['position' => 'bottom', 'priority' => 150]);
+        $this->context->controller->registerJavascript('modules-homeslider', 'modules/'.$this->name.'/js/homeslider.js', ['position' => 'bottom', 'priority' => 150]);
     }
 
     public function renderWidget($hookName = null, array $configuration = [])
