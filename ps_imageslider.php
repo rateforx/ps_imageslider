@@ -710,7 +710,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
             )
         );
 
-        return $this->fetch('module:ps_imageslider/views/templates/hook/list.tpl');
+        return $this->display(__FILE__, 'list.tpl');
     }
 
     public function renderAddForm()
