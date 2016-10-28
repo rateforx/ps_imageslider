@@ -43,6 +43,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
     protected $default_speed = 5000;
     protected $default_pause_on_hover = 1;
     protected $default_wrap = 1;
+    protected $templateFile;
 
     public function __construct()
     {
@@ -59,6 +60,8 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         $this->displayName = $this->getTranslator()->trans('Image slider', array(), 'Modules.ImageSlider');
         $this->description = $this->getTranslator()->trans('Adds an image slider to your site.', array(), 'Modules.ImageSlider');
         $this->ps_versions_compliancy = array('min' => '1.7.0.0', 'max' => _PS_VERSION_);
+
+        $this->templateFile = 'module:ps_imageslider/views/templates/hook/slider.tpl';
     }
 
     /**
@@ -531,9 +534,11 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
     public function renderWidget($hookName = null, array $configuration = [])
     {
-        $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+        if (!$this->isCached($this->templateFile, $this->getCacheId())) {
+            $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+        }
 
-        return $this->fetch('module:ps_imageslider/views/templates/hook/slider.tpl', $this->getCacheId());
+        return $this->fetch($this->templateFile, $this->getCacheId());
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
@@ -562,7 +567,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
     public function clearCache()
     {
-        $this->_clearCache('module:ps_imageslider/views/templates/hook/slider.tpl');
+        $this->_clearCache($this->templateFile);
     }
 
     public function hookActionShopDataDuplication($params)
