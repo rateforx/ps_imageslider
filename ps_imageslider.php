@@ -565,6 +565,15 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         ];
     }
 
+    private function updateUrl($link)
+    {
+        if (substr($link, 0, 7) !== "http://" && substr($link, 0, 8) !== "https://") {
+            $link = "http://" . $link;
+        }
+
+        return $link;
+    }
+
     public function clearCache()
     {
         $this->_clearCache($this->templateFile);
@@ -643,6 +652,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
         foreach ($slides as &$slide) {
             $slide['image_url'] = $this->context->link->getMediaLink(_MODULE_DIR_.'ps_imageslider/images/'.$slide['image']);
+            $slide['url'] = $this->updateUrl($slide['url']);
         }
 
         return $slides;
