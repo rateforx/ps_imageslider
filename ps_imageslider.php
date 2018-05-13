@@ -438,9 +438,9 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                 }
             } else {
                 $slide = new Ps_HomeSlide();
+                /* Sets position */
+                $slide->position = (int)$this->getNextPosition();
             }
-            /* Sets position */
-            $slide->position = (int)$this->getNextPosition();
             /* Sets active */
             $slide->active = (int)Tools::getValue('active_slide');
 
