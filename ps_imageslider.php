@@ -305,10 +305,6 @@ class Ps_ImageSlider extends Module implements WidgetInterface
             if (!Validate::isInt(Tools::getValue('active_slide')) || (Tools::getValue('active_slide') != 0 && Tools::getValue('active_slide') != 1)) {
                 $errors[] = $this->getTranslator()->trans('Invalid slide state.', array(), 'Modules.Imageslider.Admin');
             }
-            /* Checks position */
-            if (!Validate::isInt(Tools::getValue('position')) || (Tools::getValue('position') < 0)) {
-                $errors[] = $this->getTranslator()->trans('Invalid slide position.', array(), 'Modules.Imageslider.Admin');
-            }
             /* If edit : checks id_slide */
             if (Tools::isSubmit('id_slide')) {
                 if (!Validate::isInt(Tools::getValue('id_slide')) && !$this->slideExists(Tools::getValue('id_slide'))) {
@@ -444,7 +440,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                 $slide = new Ps_HomeSlide();
             }
             /* Sets position */
-            $slide->position = (int)Tools::getValue('position');
+            $slide->position = (int)$this->getNextPosition();
             /* Sets active */
             $slide->active = (int)Tools::getValue('active_slide');
 
@@ -621,7 +617,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         return $html;
     }
 
-    public function getNextPosition()
+    private function getNextPosition()
     {
         $row = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
             SELECT MAX(hss.`position`) AS `next_position`
