@@ -617,7 +617,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         return $html;
     }
 
-    private function getNextPosition()
+    public function getNextPosition()
     {
         $row = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('
             SELECT MAX(hss.`position`) AS `next_position`
