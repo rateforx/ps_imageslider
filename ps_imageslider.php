@@ -49,7 +49,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
     {
         $this->name = 'ps_imageslider';
         $this->tab = 'front_office_features';
-        $this->version = '2.1.1';
+        $this->version = '3.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
         $this->secure_key = Tools::encrypt($this->name);
@@ -59,7 +59,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
 
         $this->displayName = $this->getTranslator()->trans('Image slider', array(), 'Modules.Imageslider.Admin');
         $this->description = $this->getTranslator()->trans('Adds an image slider to your site.', array(), 'Modules.Imageslider.Admin');
-        $this->ps_versions_compliancy = array('min' => '1.7.1.0', 'max' => _PS_VERSION_);
+        $this->ps_versions_compliancy = array('min' => '1.7.4.0', 'max' => _PS_VERSION_);
 
         $this->templateFile = 'module:ps_imageslider/views/templates/hook/slider.tpl';
     }
