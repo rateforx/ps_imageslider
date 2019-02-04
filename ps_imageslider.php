@@ -480,7 +480,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
                         $errors[] = $error;
                     } elseif (!$temp_name || !move_uploaded_file($_FILES['image_'.$language['id_lang']]['tmp_name'], $temp_name)) {
                         return false;
-                    } elseif (!ImageManager::resize($temp_name, dirname(__FILE__).'/images/'.$salt.'_'.$_FILES['image_'.$language['id_lang']]['name'], null, null, $type)) {
+                    } elseif (!ImageManager::resize($temp_name, __DIR__.'/images/'.$salt.'_'.$_FILES['image_'.$language['id_lang']]['name'], null, null, $type)) {
                         $errors[] = $this->displayError($this->getTranslator()->trans('An error occurred during the image upload process.', array(), 'Admin.Notifications.Error'));
                     }
                     if (isset($temp_name)) {
@@ -546,7 +546,7 @@ class Ps_ImageSlider extends Module implements WidgetInterface
         $slides = $this->getSlides(true);
         if (is_array($slides)) {
             foreach ($slides as &$slide) {
-                $slide['sizes'] = @getimagesize((dirname(__FILE__) . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $slide['image']));
+                $slide['sizes'] = @getimagesize((__DIR__ . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $slide['image']));
                 if (isset($slide['sizes'][3]) && $slide['sizes'][3]) {
                     $slide['size'] = $slide['sizes'][3];
                 }
