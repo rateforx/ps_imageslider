@@ -4,6 +4,11 @@
 
 Adds an image slider to your PrestaShop homepage.
 
+## Multistore compatibility
+
+This module is not compatible with the multistore :x: <br/>
+It means that its configuration applies for all stores.
+
 ## Reporting issues
 
 You can report issues with this module in the main PrestaShop repository. [Click here to report an issue][report-issue]. 
