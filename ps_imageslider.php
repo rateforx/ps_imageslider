@@ -34,6 +34,11 @@ if (!defined('_PS_VERSION_')) {
 
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
+$autoloadPath = __DIR__ . '/vendor/autoload.php';
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+}
+
 include_once(_PS_MODULE_DIR_.'ps_imageslider/Ps_HomeSlide.php');
 
 class Ps_ImageSlider extends Module implements WidgetInterface
