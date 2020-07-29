@@ -39,10 +39,13 @@
 						<div class="col-lg-1">
 							<span><i class="icon-arrows "></i></span>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<img src="{$image_baseurl}{$slide.image}" alt="{$slide.title}" class="img-thumbnail" />
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-2">
+							<img src="{$image_baseurl}{$slide.imageMobile}" alt="{$slide.title}" class="img-thumbnail" />
+						</div>
+						<div class="col-md-7">
 							<h4 class="pull-left">
 								#{$slide.id_slide} - {$slide.title}
 								{if $slide.is_shared}
